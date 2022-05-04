@@ -2,8 +2,18 @@ package com.kodilla.tictactoe;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Controller {
+
+    @FXML
+    private Label label;
+
+    @FXML
+    private Label gameMode;
 
     @FXML
     private Button button00;
@@ -33,7 +43,13 @@ public class Controller {
     private Button button22;
 
     @FXML
-    private Button buttonClearBoard;
+    private Button buttonPVP;
+
+    @FXML
+    private Button buttonAIEASY;
+
+    @FXML
+    private Button buttonAIMEDIUM;
 
     @FXML
     private Button buttonNewGame;
@@ -41,65 +57,63 @@ public class Controller {
     @FXML
     private Button buttonEndGame;
 
-    public void clickButton00() {
-        System.out.println("00");
-        button00.setText("X");
-        button00.setStyle("-fx-font-size: 75; -fx-font-weight: bold");
+    private int playerRound = 0;
+    private boolean PVP = false;
+    ArrayList<Button> gridButtons;
+    ArrayList<Button> gameModeButtons;
+
+    public void initialize() {
+         onPVPButtonClick(buttonPVP);
     }
 
-    public void clickButton01() {
-        button01.setText("X");
-        button01.setStyle("-fx-font-size: 75; -fx-font-weight: bold");
+    public void onPVPButtonClick(Button buttonPVP) {
+        gameModeButtons = new ArrayList<>(Arrays.asList(buttonPVP));
+        buttonPVP.setOnMouseClicked(mouseEvent -> {
+            buttonPVP.setDisable(true);
+            label.setText("'X' move");
+            gameMode.setText("Player vs Player");
+            PVP = true;
+            displayBoard();
+        });
     }
 
-    public void clickButton02() {
-        button02.setText("X");
-        button02.setStyle("-fx-font-size: 75; -fx-font-weight: bold");
+    public void displayBoard() {
+        gridButtons = new ArrayList<>(Arrays.asList(button00,button01,button02,button10,button11,button12,button20,button21,button22));
+
+        gridButtons.forEach(button -> {
+            setupButton(button);
+            button.setFocusTraversable(false);
+        });
     }
 
-    public void clickButton10() {
-        button10.setText("X");
-        button10.setStyle("-fx-font-size: 75; -fx-font-weight: bold");
+    private void setupButton(Button button) {
+        button.setOnMouseClicked(mouseEvent -> {
+            setSymbol(button);
+            button.setDisable(true);
+        });
     }
 
-    public void clickButton11() {
-        button11.setText("X");
-        button11.setStyle("-fx-font-size: 75; -fx-font-weight: bold");
+    public void setSymbol(Button button){
+        if (playerRound == 0){
+            button.setText("X");
+            button.setStyle("-fx-font-size: 70; -fx-font-weight: bold");
+            label.setText("'O' move");
+            playerRound = 1;
+        } else {
+            button.setText("O");
+            button.setStyle("-fx-font-size: 70; -fx-font-weight: bold");
+            label.setText("'X' move");
+            playerRound = 0;
+        }
     }
 
-    public void clickButton12() {
-        button12.setText("X");
-        button12.setStyle("-fx-font-size: 75; -fx-font-weight: bold");
-    }
 
-    public void clickButton20() {
-        button20.setText("X");
-        button20.setStyle("-fx-font-size: 75; -fx-font-weight: bold");
-    }
-
-    public void clickButton21() {
-        button21.setText("X");
-        button21.setStyle("-fx-font-size: 75; -fx-font-weight: bold");
-    }
-
-    public void clickButton22() {
-        button22.setText("X");
-        button22.setStyle("-fx-font-size: 75; -fx-font-weight: bold");
-    }
-
-    public void clickButtonPVP() {
-
-    }
 
     public void clickButtonAIEASY() {
 
     }
 
     public void clickButtonAIMEDIUM() {
-
-    }
-
-    public void clickButtonClearBoard() {
 
     }
 
