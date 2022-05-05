@@ -2,7 +2,6 @@ package com.kodilla.tictactoe;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -62,8 +61,6 @@ public class Controller implements Initializable {
     @FXML
     private Button buttonEndGame;
 
-    @FXML
-    private GridPane grid;
 
     private int playerRound = 0;
     private int column;
@@ -72,6 +69,7 @@ public class Controller implements Initializable {
     private boolean AIMedium = false;
     private boolean AIEasy = false;
     ArrayList<Button> gridButtons;
+    char[][] game = new char[3][3];
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -93,22 +91,10 @@ public class Controller implements Initializable {
         button.setOnMouseClicked(mouseEvent -> {
             setSymbol(button);
             button.setDisable(true);
-            System.out.println(getColumnIndex(button) + " " + getRowIndex(button));
-        });
-    }
-
-    public int getColumnIndex(Button button) {
-        button.setOnMouseClicked(mouseEvent -> {
             column = GridPane.getColumnIndex(button);
-        });
-        return column;
-    }
-
-    public int getRowIndex(Button button) {
-        button.setOnMouseClicked(mouseEvent -> {
             row = GridPane.getRowIndex(button);
+            System.out.println(column + " " + row);
         });
-        return row;
     }
 
     public void setSymbol(Button button){
