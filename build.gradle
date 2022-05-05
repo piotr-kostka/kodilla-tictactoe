@@ -43,6 +43,8 @@ dependencies {
     implementation('eu.hansolo:tilesfx:11.48') {
         exclude(group: 'org.openjfx')
     }
+    implementation 'org.jetbrains:annotations:20.1.0'
+    implementation 'org.jetbrains:annotations:20.1.0'
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")

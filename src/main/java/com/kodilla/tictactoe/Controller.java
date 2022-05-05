@@ -1,13 +1,18 @@
 package com.kodilla.tictactoe;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.ResourceBundle;
 
-public class Controller {
+public class Controller implements Initializable {
 
     @FXML
     private Label label;
@@ -57,24 +62,22 @@ public class Controller {
     @FXML
     private Button buttonEndGame;
 
+    @FXML
+    private GridPane grid;
+
     private int playerRound = 0;
+    private int column;
+    private int row;
     private boolean PVP = false;
+    private boolean AIMedium = false;
+    private boolean AIEasy = false;
     ArrayList<Button> gridButtons;
-    ArrayList<Button> gameModeButtons;
 
-    public void initialize() {
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
          onPVPButtonClick(buttonPVP);
-    }
-
-    public void onPVPButtonClick(Button buttonPVP) {
-        gameModeButtons = new ArrayList<>(Arrays.asList(buttonPVP));
-        buttonPVP.setOnMouseClicked(mouseEvent -> {
-            buttonPVP.setDisable(true);
-            label.setText("'X' move");
-            gameMode.setText("Player vs Player");
-            PVP = true;
-            displayBoard();
-        });
+         onAIEasyButtonClick(buttonAIEASY);
+         onAIMediumButtonClick(buttonAIMEDIUM);
     }
 
     public void displayBoard() {
@@ -90,7 +93,22 @@ public class Controller {
         button.setOnMouseClicked(mouseEvent -> {
             setSymbol(button);
             button.setDisable(true);
+            System.out.println(getColumnIndex(button) + " " + getRowIndex(button));
         });
+    }
+
+    public int getColumnIndex(Button button) {
+        button.setOnMouseClicked(mouseEvent -> {
+            column = GridPane.getColumnIndex(button);
+        });
+        return column;
+    }
+
+    public int getRowIndex(Button button) {
+        button.setOnMouseClicked(mouseEvent -> {
+            row = GridPane.getRowIndex(button);
+        });
+        return row;
     }
 
     public void setSymbol(Button button){
@@ -107,14 +125,46 @@ public class Controller {
         }
     }
 
+    public void onPVPButtonClick(Button buttonPVP) {
 
-
-    public void clickButtonAIEASY() {
-
+        buttonPVP.setOnMouseClicked(mouseEvent -> {
+            buttonPVP.setDisable(true);
+            buttonAIMEDIUM.setDisable(true);
+            buttonAIEASY.setDisable(true);
+            buttonPVP.setFocusTraversable(false);
+            label.setText("'X' move");
+            gameMode.setText("Player vs Player");
+            PVP = true;
+            displayBoard();
+        });
     }
 
-    public void clickButtonAIMEDIUM() {
+    public void onAIEasyButtonClick(Button buttonAIEASY) {
 
+        buttonAIEASY.setOnMouseClicked(mouseEvent -> {
+            buttonAIEASY.setDisable(true);
+            buttonPVP.setDisable(true);
+            buttonAIMEDIUM.setDisable(true);
+            buttonAIEASY.setFocusTraversable(false);
+            label.setText("'X' move");
+            gameMode.setText("Player vs Computer Easy");
+            AIEasy = true;
+            displayBoard();
+        });
+    }
+
+    public void onAIMediumButtonClick(Button buttonAIMEDIUM) {
+
+        buttonAIMEDIUM.setOnMouseClicked(mouseEvent -> {
+            buttonAIMEDIUM.setDisable(true);
+            buttonPVP.setDisable(true);
+            buttonAIEASY.setDisable(true);
+            buttonAIMEDIUM.setFocusTraversable(false);
+            label.setText("'X' move");
+            gameMode.setText("Player vs Computer Medium");
+            AIMedium = true;
+            displayBoard();
+        });
     }
 
     public void clickButtonNewGame() {

@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.util.Objects;
+
 
 public class TicTacToeApplication extends Application {
 
@@ -14,7 +16,7 @@ public class TicTacToeApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("gameTemplate.fxml")));
+        Scene scene = new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("gameTemplate.fxml"))));
         primaryStage.setTitle("TicTacToe - by P.Kostka");
         primaryStage.setScene(scene);
         primaryStage.sizeToScene();
