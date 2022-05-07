@@ -1,10 +1,12 @@
 package com.kodilla.tictactoe;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -56,9 +58,6 @@ public class Controller implements Initializable {
     private Button buttonAIMEDIUM;
 
     @FXML
-    private Button buttonNewGame;
-
-    @FXML
     private Button buttonEndGame;
 
 
@@ -83,7 +82,6 @@ public class Controller implements Initializable {
 
         gridButtons.forEach(button -> {
             setupButton(button);
-            button.setFocusTraversable(false);
         });
     }
 
@@ -117,7 +115,6 @@ public class Controller implements Initializable {
             buttonPVP.setDisable(true);
             buttonAIMEDIUM.setDisable(true);
             buttonAIEASY.setDisable(true);
-            buttonPVP.setFocusTraversable(false);
             label.setText("'X' move");
             gameMode.setText("Player vs Player");
             PVP = true;
@@ -131,7 +128,6 @@ public class Controller implements Initializable {
             buttonAIEASY.setDisable(true);
             buttonPVP.setDisable(true);
             buttonAIMEDIUM.setDisable(true);
-            buttonAIEASY.setFocusTraversable(false);
             label.setText("'X' move");
             gameMode.setText("Player vs Computer Easy");
             AIEasy = true;
@@ -145,7 +141,6 @@ public class Controller implements Initializable {
             buttonAIMEDIUM.setDisable(true);
             buttonPVP.setDisable(true);
             buttonAIEASY.setDisable(true);
-            buttonAIMEDIUM.setFocusTraversable(false);
             label.setText("'X' move");
             gameMode.setText("Player vs Computer Medium");
             AIMedium = true;
@@ -153,11 +148,25 @@ public class Controller implements Initializable {
         });
     }
 
-    public void clickButtonNewGame() {
+    @FXML
+    void closeGame(ActionEvent event) {
+        Stage stage = (Stage) buttonEndGame.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    void startNewGame(ActionEvent event) {
+        gridButtons.forEach(this::resetButton);
+        buttonPVP.setDisable(false);
+        buttonAIEASY.setDisable(false);
+        buttonAIMEDIUM.setDisable(false);
+        label.setText("Welcome to game");
+        gameMode.setText("Select game mode:");
 
     }
 
-    public void clickButtonEndGame() {
-
+    public void resetButton(Button button){
+        button.setDisable(false);
+        button.setText("");
     }
 }
