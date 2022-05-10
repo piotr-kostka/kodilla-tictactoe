@@ -2,18 +2,14 @@ package com.kodilla.tictactoe;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.ResourceBundle;
 
-public class Controller implements Initializable {
+public class Controller {
 
     @FXML
     private Label label;
@@ -22,31 +18,31 @@ public class Controller implements Initializable {
     private Label gameMode;
 
     @FXML
-    private Button button00;
+    private Button button1;
 
     @FXML
-    private Button button01;
+    private Button button2;
 
     @FXML
-    private Button button02;
+    private Button button3;
 
     @FXML
-    private Button button10;
+    private Button button4;
 
     @FXML
-    private Button button11;
+    private Button button5;
 
     @FXML
-    private Button button12;
+    private Button button6;
 
     @FXML
-    private Button button20;
+    private Button button7;
 
     @FXML
-    private Button button21;
+    private Button button8;
 
     @FXML
-    private Button button22;
+    private Button button9;
 
     @FXML
     private Button buttonPVP;
@@ -55,65 +51,85 @@ public class Controller implements Initializable {
     private Button buttonAIEASY;
 
     @FXML
-    private Button buttonAIMEDIUM;
+    private Button buttonAIHARD;
 
     @FXML
     private Button buttonEndGame;
 
-
-    private int playerRound = 0;
-    private int column;
-    private int row;
+    private int playerTurn = 0;
     private boolean PVP = false;
-    private boolean AIMedium = false;
     private boolean AIEasy = false;
+    private boolean AIHard = false;
     ArrayList<Button> gridButtons;
-    char[][] game = new char[3][3];
+    EasyAI easyAI = new EasyAI();
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-         onPVPButtonClick(buttonPVP);
-         onAIEasyButtonClick(buttonAIEASY);
-         onAIMediumButtonClick(buttonAIMEDIUM);
+    public void initialize() {
+        onPVPButtonClick(buttonPVP);
+        onAIEasyButtonClick(buttonAIEASY);
+        onAIHardButtonClick(buttonAIHARD);
     }
 
     public void displayBoard() {
-        gridButtons = new ArrayList<>(Arrays.asList(button00,button01,button02,button10,button11,button12,button20,button21,button22));
-
-        gridButtons.forEach(button -> {
-            setupButton(button);
-        });
+        gridButtons = new ArrayList<>(Arrays.asList(button1, button2, button3, button4, button5, button6, button7, button8, button9));
+        if(AIEasy) {
+            gridButtons.forEach(this::setupButtonVsAI);
+        } else if (PVP) {
+            gridButtons.forEach(this::setupButtonVsPVP);
+        }
     }
 
-    private void setupButton(Button button) {
+    private void setupButtonVsAI(Button button) {
         button.setOnMouseClicked(mouseEvent -> {
-            setSymbol(button);
+            setSymbolVsAI(button);
             button.setDisable(true);
-            column = GridPane.getColumnIndex(button);
-            row = GridPane.getRowIndex(button);
-            System.out.println(column + " " + row);
+            makeAIMove();
         });
     }
 
-    public void setSymbol(Button button){
-        if (playerRound == 0){
+    public void makeAIMove(){
+        int move = easyAI.getAIMove(getBoardState());
+        gridButtons.get(move).setText("O");
+        gridButtons.get(move).setDisable(true);
+    }
+
+    public void setSymbolVsAI(Button button){
+        button.setText("X");
+    }
+
+    public ButtonState getBoardState(){
+        String[] board = new String[9];
+
+        for (int i = 0; i < gridButtons.size(); i++) {
+            board[i] = gridButtons.get(i).getText();
+        }
+
+        return new ButtonState(0,board);
+    }
+
+
+    private void setupButtonVsPVP(Button button) {
+        button.setOnMouseClicked(mouseEvent -> {
+            setSymbolVsPVP(button);
+            button.setDisable(true);
+        });
+    }
+
+    public void setSymbolVsPVP (Button button){
+        if(playerTurn % 2 == 0){
             button.setText("X");
-            button.setStyle("-fx-font-size: 70; -fx-font-weight: bold");
             label.setText("'O' move");
-            playerRound = 1;
-        } else {
+            playerTurn = 1;
+        } else{
             button.setText("O");
-            button.setStyle("-fx-font-size: 70; -fx-font-weight: bold");
             label.setText("'X' move");
-            playerRound = 0;
+            playerTurn = 0;
         }
     }
 
     public void onPVPButtonClick(Button buttonPVP) {
-
         buttonPVP.setOnMouseClicked(mouseEvent -> {
             buttonPVP.setDisable(true);
-            buttonAIMEDIUM.setDisable(true);
+            buttonAIHARD.setDisable(true);
             buttonAIEASY.setDisable(true);
             label.setText("'X' move");
             gameMode.setText("Player vs Player");
@@ -123,11 +139,10 @@ public class Controller implements Initializable {
     }
 
     public void onAIEasyButtonClick(Button buttonAIEASY) {
-
         buttonAIEASY.setOnMouseClicked(mouseEvent -> {
             buttonAIEASY.setDisable(true);
             buttonPVP.setDisable(true);
-            buttonAIMEDIUM.setDisable(true);
+            buttonAIHARD.setDisable(true);
             label.setText("'X' move");
             gameMode.setText("Player vs Computer Easy");
             AIEasy = true;
@@ -135,15 +150,14 @@ public class Controller implements Initializable {
         });
     }
 
-    public void onAIMediumButtonClick(Button buttonAIMEDIUM) {
-
+    public void onAIHardButtonClick(Button buttonAIMEDIUM) {
         buttonAIMEDIUM.setOnMouseClicked(mouseEvent -> {
             buttonAIMEDIUM.setDisable(true);
             buttonPVP.setDisable(true);
             buttonAIEASY.setDisable(true);
             label.setText("'X' move");
             gameMode.setText("Player vs Computer Medium");
-            AIMedium = true;
+            AIHard = true;
             displayBoard();
         });
     }
@@ -156,17 +170,16 @@ public class Controller implements Initializable {
 
     @FXML
     void startNewGame(ActionEvent event) {
-        gridButtons.forEach(this::resetButton);
+        gridButtons.forEach(button -> {
+                button.setDisable(false);
+                button.setText("");
+            });
         buttonPVP.setDisable(false);
         buttonAIEASY.setDisable(false);
-        buttonAIMEDIUM.setDisable(false);
+        buttonAIHARD.setDisable(false);
         label.setText("Welcome to game");
         gameMode.setText("Select game mode:");
-
-    }
-
-    public void resetButton(Button button){
-        button.setDisable(false);
-        button.setText("");
+        PVP = false;
+        AIEasy = false;
     }
 }
