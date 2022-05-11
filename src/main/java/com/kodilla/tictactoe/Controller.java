@@ -1,6 +1,5 @@
 package com.kodilla.tictactoe;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -58,8 +57,8 @@ public class Controller {
 
     private int playerTurn = 0;
     private boolean PVP = false;
-    private boolean AIEasy = false;
-    private boolean AIHard = false;
+    private boolean computerEasy = false;
+    private boolean computerHard = false;
     ArrayList<Button> gridButtons;
     EasyAI easyAI = new EasyAI();
 
@@ -67,119 +66,129 @@ public class Controller {
         onPVPButtonClick(buttonPVP);
         onAIEasyButtonClick(buttonAIEASY);
         onAIHardButtonClick(buttonAIHARD);
-    }
-
-    public void displayBoard() {
         gridButtons = new ArrayList<>(Arrays.asList(button1, button2, button3, button4, button5, button6, button7, button8, button9));
-        if(AIEasy) {
-            gridButtons.forEach(this::setupButtonVsAI);
-        } else if (PVP) {
-            gridButtons.forEach(this::setupButtonVsPVP);
-        }
     }
 
-    private void setupButtonVsAI(Button button) {
+    private void displayBoard() {
+            gridButtons.forEach(this::makePlayerMove);
+    }
+
+    private void makePlayerMove(Button button) {
         button.setOnMouseClicked(mouseEvent -> {
-            setSymbolVsAI(button);
-            button.setDisable(true);
-            makeAIMove();
+            if (PVP) {
+                if(playerTurn % 2 == 0){
+                    button.setText("X");
+                    label.setText("'O' move");
+                    playerTurn = 1;
+                } else{
+                    button.setText("O");
+                    label.setText("'X' move");
+                    playerTurn = 0;
+                }
+                button.setDisable(true);
+            } else if (computerEasy) {
+                button.setText("X");
+                button.setDisable(true);
+                getComputerMove();
+            } else {
+                button.setText("X");
+                button.setDisable(true);
+                getComputerMove();
+            }
         });
     }
 
-    public void makeAIMove(){
+    private void getComputerMove(){
         int move = easyAI.getAIMove(getBoardState());
         gridButtons.get(move).setText("O");
         gridButtons.get(move).setDisable(true);
     }
 
-    public void setSymbolVsAI(Button button){
-        button.setText("X");
-    }
-
-    public ButtonState getBoardState(){
+    private ButtonState getBoardState(){
         String[] board = new String[9];
 
         for (int i = 0; i < gridButtons.size(); i++) {
             board[i] = gridButtons.get(i).getText();
         }
-
         return new ButtonState(0,board);
     }
 
-
-    private void setupButtonVsPVP(Button button) {
-        button.setOnMouseClicked(mouseEvent -> {
-            setSymbolVsPVP(button);
-            button.setDisable(true);
-        });
-    }
-
-    public void setSymbolVsPVP (Button button){
-        if(playerTurn % 2 == 0){
-            button.setText("X");
-            label.setText("'O' move");
-            playerTurn = 1;
-        } else{
-            button.setText("O");
-            label.setText("'X' move");
-            playerTurn = 0;
-        }
-    }
-
-    public void onPVPButtonClick(Button buttonPVP) {
+    private void onPVPButtonClick(Button buttonPVP) {
         buttonPVP.setOnMouseClicked(mouseEvent -> {
-            buttonPVP.setDisable(true);
-            buttonAIHARD.setDisable(true);
-            buttonAIEASY.setDisable(true);
+            disableModeButtons();
             label.setText("'X' move");
             gameMode.setText("Player vs Player");
             PVP = true;
+            enableBoard();
             displayBoard();
         });
     }
 
-    public void onAIEasyButtonClick(Button buttonAIEASY) {
+    private void onAIEasyButtonClick(Button buttonAIEASY) {
         buttonAIEASY.setOnMouseClicked(mouseEvent -> {
-            buttonAIEASY.setDisable(true);
-            buttonPVP.setDisable(true);
-            buttonAIHARD.setDisable(true);
-            label.setText("'X' move");
+            disableModeButtons();
+            label.setText("Your move");
             gameMode.setText("Player vs Computer Easy");
-            AIEasy = true;
+            computerEasy = true;
+            enableBoard();
             displayBoard();
         });
     }
 
-    public void onAIHardButtonClick(Button buttonAIMEDIUM) {
+    private void onAIHardButtonClick(Button buttonAIMEDIUM) {
         buttonAIMEDIUM.setOnMouseClicked(mouseEvent -> {
-            buttonAIMEDIUM.setDisable(true);
-            buttonPVP.setDisable(true);
-            buttonAIEASY.setDisable(true);
-            label.setText("'X' move");
-            gameMode.setText("Player vs Computer Medium");
-            AIHard = true;
+            disableModeButtons();
+            label.setText("Your move");
+            gameMode.setText("Player vs Computer Hard");
+            computerHard = true;
+            enableBoard();
             displayBoard();
         });
     }
 
     @FXML
-    void closeGame(ActionEvent event) {
+    void closeGame() {
         Stage stage = (Stage) buttonEndGame.getScene().getWindow();
         stage.close();
     }
 
     @FXML
-    void startNewGame(ActionEvent event) {
-        gridButtons.forEach(button -> {
-                button.setDisable(false);
-                button.setText("");
-            });
+    void startNewGame() {
+        disableBoard();
+        clearBoard();
+        enableModeButtons();
+        setGameModeFalse();
+        label.setText("Welcome to game");
+        gameMode.setText("Select game mode:");
+    }
+
+    private void clearBoard() {
+        gridButtons.forEach(button -> button.setText(""));
+    }
+
+    private void enableBoard() {
+        gridButtons.forEach(button -> button.setDisable(false));
+    }
+
+    private void disableBoard() {
+        gridButtons.forEach(button -> button.setDisable(true));
+    }
+
+    private void enableModeButtons() {
         buttonPVP.setDisable(false);
         buttonAIEASY.setDisable(false);
         buttonAIHARD.setDisable(false);
-        label.setText("Welcome to game");
-        gameMode.setText("Select game mode:");
+    }
+
+    private void setGameModeFalse() {
         PVP = false;
-        AIEasy = false;
+        computerEasy = false;
+        computerHard = false;
+    }
+
+    private void disableModeButtons() {
+        buttonPVP.setDisable(true);
+        buttonAIEASY.setDisable(true);
+        buttonAIHARD.setDisable(true);
     }
 }
