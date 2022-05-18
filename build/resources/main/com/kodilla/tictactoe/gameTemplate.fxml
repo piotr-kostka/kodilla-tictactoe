@@ -9,37 +9,53 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kodilla.tictactoe.Controller">
+<SplitPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="900.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kodilla.tictactoe.Controller">
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" styleClass="bodyBackground" stylesheets="@backgroundStyle.css">
-        <AnchorPane layoutX="5.0" layoutY="616.0" prefHeight="182.0" prefWidth="588.0">
-         <children>
-               <Button fx:id="buttonPVP" contentDisplay="CENTER" focusTraversable="false" layoutX="57.0" layoutY="62.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Player vs Player" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="57.0" AnchorPane.rightAnchor="431.0">
-               <font>
-                  <Font name="System Bold Italic" size="12.0" />
-               </font>
+        <AnchorPane layoutY="716.0" prefHeight="182.0" prefWidth="689.0">
+            <Button fx:id="buttonPVP" contentDisplay="CENTER" focusTraversable="false" layoutX="115.0" layoutY="62.0"
+                    maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                    mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Player vs Player"
+                    textAlignment="CENTER" wrapText="true">
+                <font>
+                    <Font name="System Bold Italic" size="12.0"/>
+                </font>
+         </Button>
+            <Button fx:id="buttonAIEASY" contentDisplay="CENTER" focusTraversable="false" layoutX="229.0" layoutY="62.0"
+                    maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                    mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Player vs Computer"
+                    textAlignment="CENTER" wrapText="true">
+                <font>
+                    <Font name="System Bold Italic" size="12.0"/>
+                </font>
+         </Button>
+            <Button contentDisplay="CENTER" focusTraversable="false" layoutX="575.0"
+                    layoutY="62.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                    mnemonicParsing="false" onAction="#startNewGame" prefHeight="100.0" prefWidth="100.0"
+                    text="New game" textAlignment="CENTER">
+                <font>
+                    <Font name="System Bold" size="12.0"/>
+                </font>
+         </Button>
+            <Label fx:id="gameMode" alignment="CENTER" contentDisplay="CENTER" layoutX="53.0" layoutY="14.0"
+                   prefHeight="38.0" prefWidth="337.0" text="Select game mode:" textAlignment="CENTER">
+                <font>
+                    <Font name="Dubai Bold" size="21.0"/>
+                </font>
+            </Label>
+            <Button fx:id="playAgain" layoutX="462.0" layoutY="62.0" maxHeight="-Infinity" maxWidth="-Infinity"
+                    minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playAgain"
+                    prefHeight="100.0" prefWidth="100.0" text="Play again">
+                <font>
+                    <Font name="System Bold" size="12.0"/>
+                </font>
             </Button>
-               <Button fx:id="buttonAIEASY" contentDisplay="CENTER" focusTraversable="false" layoutX="171.0" layoutY="62.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Player vs AI easy" textAlignment="CENTER" wrapText="true" AnchorPane.rightAnchor="317.0">
-               <font>
-                  <Font name="System Bold Italic" size="12.0" />
-               </font>
-            </Button>
-               <Button fx:id="buttonAIHARD" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" layoutX="285.0" layoutY="62.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Player vs AI hard" textAlignment="CENTER" wrapText="true" AnchorPane.rightAnchor="203.0">
-               <font>
-                  <Font name="System Bold Italic" size="12.0" />
-               </font>
-            </Button>
-               <Button fx:id="buttonNewGame" contentDisplay="CENTER" focusTraversable="false" layoutX="437.0" layoutY="62.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#startNewGame" prefHeight="100.0" prefWidth="100.0" text="New game" textAlignment="CENTER">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
-         </children></AnchorPane>
-        <Label fx:id="label" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" graphicTextGap="1.0" layoutY="49.0" lineSpacing="1.0" prefHeight="126.0" prefWidth="598.0" text="Welcome to Tic Tac Toe game" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" wrapText="true">
+        </AnchorPane>
+        <Label fx:id="label" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" graphicTextGap="1.0" layoutX="50.0" layoutY="32.0" lineSpacing="1.0" prefHeight="126.0" prefWidth="598.0" text="Welcome to Tic Tac Toe game" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" wrapText="true">
             <font>
                 <Font name="Times New Roman Bold" size="50.0" />
             </font>
         </Label>
-        <GridPane fx:id="grid" layoutX="74.0" layoutY="213.0" prefHeight="450.0" prefWidth="450.0">
+        <GridPane layoutX="124.0" layoutY="266.0" prefHeight="450.0" prefWidth="450.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
@@ -96,11 +112,16 @@
             </font>
          </Button>
         </GridPane>
-         <Button fx:id="buttonEndGame" contentDisplay="CENTER" focusTraversable="false" layoutX="515.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#closeGame" prefHeight="35.0" prefWidth="69.0" text="End game" textAlignment="CENTER" />
-         <Label fx:id="gameMode" alignment="CENTER" contentDisplay="CENTER" layoutX="131.0" layoutY="175.0" prefHeight="38.0" prefWidth="337.0" text="Select game mode:" textAlignment="CENTER">
-             <font>
-                 <Font name="Dubai Bold" size="21.0" />
-             </font>
-         </Label>
+         <Button fx:id="buttonEndGame" contentDisplay="CENTER" focusTraversable="false" layoutX="615.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#closeGame" prefHeight="35.0" prefWidth="69.0" text="End game" textAlignment="CENTER" />
+      <Label layoutX="283.0" layoutY="167.0" text="Current score:">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="score" alignment="CENTER" contentDisplay="CENTER" layoutX="51.0" layoutY="197.0" prefHeight="64.0" prefWidth="598.0" textAlignment="CENTER">
+         <font>
+            <Font size="33.0" />
+         </font>
+      </Label>
     </AnchorPane>
 </SplitPane>

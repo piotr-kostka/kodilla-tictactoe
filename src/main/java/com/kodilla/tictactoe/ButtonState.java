@@ -3,18 +3,18 @@ package com.kodilla.tictactoe;
 public class ButtonState {
 
     private final int position;
-    private final String[] stateOfButton;
+    private final String[] buttonState;
 
-    public ButtonState(int position, String[] stateOfButton) {
+    public ButtonState(int position, String[] buttonState) {
         this.position = position;
-        this.stateOfButton = stateOfButton;
+        this.buttonState = buttonState;
     }
 
     public int getPosition() {
         return position;
     }
 
-    public String[] getStateOfButton() {
-        return stateOfButton;
+    public String[] getButtonState() {
+        return buttonState;
     }
 }
