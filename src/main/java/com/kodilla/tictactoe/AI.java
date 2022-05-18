@@ -4,13 +4,12 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
 
-public class EasyAI {
+public class AI {
     Random random = new Random();
 
-    public int getAIMove(ButtonState buttonState) {
-
+    public int getEasyMove(ButtonState buttonState) {
         int drawNumber;
-        ArrayList<ButtonState> possibleMoves = emptyPlaces(buttonState);
+        ArrayList<ButtonState> possibleMoves = getEmptyStates(buttonState);
         ArrayList<Integer> movesList = new ArrayList<>();
 
         for (ButtonState states: possibleMoves) {
@@ -26,32 +25,12 @@ public class EasyAI {
         return possibleMoves.get(drawNumber).getPosition();
     }
 
-
-
-    private ArrayList<ButtonState> emptyPlaces(ButtonState buttonState){
+    private ArrayList<ButtonState> getEmptyStates(ButtonState buttonState){
         ArrayList<ButtonState> possibleMoves = new ArrayList<>();
-        int xMoves = 0;
-        int oMoves = 0;
-        String player;
+        String player = "";
 
-        //Sprawdzenie czyja tura
-        for (String turn: buttonState.getStateOfButton()) {
-            if (turn.equals("X")) {
-                xMoves++;
-            }else if(turn.equals("O")){
-                oMoves++;
-            }
-        }
-
-        if(xMoves <= oMoves){
-            player = "X";
-        } else {
-            player = "O";
-        }
-
-        //Stworzenie listy mozliwych ruchów gdzie pole buttona jest wolne
         for (int i = 0; i < 9; i++) {
-            String[] newState = buttonState.getStateOfButton().clone();
+            String[] newState = buttonState.getButtonState();
 
             if(!Objects.equals(newState[i], "X") && !Objects.equals(newState[i], "O")){
                 newState[i] = player;
