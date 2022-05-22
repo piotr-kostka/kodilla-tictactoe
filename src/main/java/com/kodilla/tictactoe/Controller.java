@@ -51,6 +51,9 @@ public class Controller {
     private Button buttonAIEASY;
 
     @FXML
+    private Button buttonAIHARD;
+
+    @FXML
     private Button buttonEndGame;
 
     @FXML
