@@ -12,45 +12,38 @@
 <SplitPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="900.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kodilla.tictactoe.Controller">
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" styleClass="bodyBackground" stylesheets="@backgroundStyle.css">
         <AnchorPane layoutY="716.0" prefHeight="182.0" prefWidth="689.0">
-            <Button fx:id="buttonPVP" contentDisplay="CENTER" focusTraversable="false" layoutX="115.0" layoutY="62.0"
-                    maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                    mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Player vs Player"
-                    textAlignment="CENTER" wrapText="true">
+            <Button fx:id="buttonPVP" contentDisplay="CENTER" focusTraversable="false" layoutX="58.0" layoutY="62.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Player vs Player" textAlignment="CENTER" wrapText="true">
                 <font>
-                    <Font name="System Bold Italic" size="12.0"/>
+                    <Font name="System Bold Italic" size="12.0" />
                 </font>
          </Button>
-            <Button fx:id="buttonAIEASY" contentDisplay="CENTER" focusTraversable="false" layoutX="229.0" layoutY="62.0"
-                    maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                    mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Player vs Computer"
-                    textAlignment="CENTER" wrapText="true">
+            <Button fx:id="buttonAIEASY" contentDisplay="CENTER" focusTraversable="false" layoutX="172.0" layoutY="62.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Player vs Computer EASY" textAlignment="CENTER" wrapText="true">
                 <font>
-                    <Font name="System Bold Italic" size="12.0"/>
+                    <Font name="System Bold Italic" size="12.0" />
                 </font>
          </Button>
-            <Button contentDisplay="CENTER" focusTraversable="false" layoutX="575.0"
-                    layoutY="62.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                    mnemonicParsing="false" onAction="#startNewGame" prefHeight="100.0" prefWidth="100.0"
-                    text="New game" textAlignment="CENTER">
+            <Button contentDisplay="CENTER" focusTraversable="false" layoutX="575.0" layoutY="62.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#startNewGame" prefHeight="100.0" prefWidth="100.0" text="New game" textAlignment="CENTER">
                 <font>
-                    <Font name="System Bold" size="12.0"/>
+                    <Font name="System Bold" size="12.0" />
                 </font>
          </Button>
-            <Label fx:id="gameMode" alignment="CENTER" contentDisplay="CENTER" layoutX="53.0" layoutY="14.0"
-                   prefHeight="38.0" prefWidth="337.0" text="Select game mode:" textAlignment="CENTER">
+            <Label fx:id="gameMode" alignment="CENTER" contentDisplay="CENTER" layoutX="53.0" layoutY="14.0" prefHeight="38.0" prefWidth="337.0" text="Select game mode:" textAlignment="CENTER">
                 <font>
-                    <Font name="Dubai Bold" size="21.0"/>
+                    <Font name="Dubai Bold" size="21.0" />
                 </font>
             </Label>
-            <Button fx:id="playAgain" layoutX="462.0" layoutY="62.0" maxHeight="-Infinity" maxWidth="-Infinity"
-                    minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playAgain"
-                    prefHeight="100.0" prefWidth="100.0" text="Play again">
+            <Button fx:id="playAgain" layoutX="462.0" layoutY="62.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playAgain" prefHeight="100.0" prefWidth="100.0" text="Play again">
                 <font>
-                    <Font name="System Bold" size="12.0"/>
+                    <Font name="System Bold" size="12.0" />
                 </font>
             </Button>
+         <Button fx:id="buttonAIHARD" contentDisplay="CENTER" focusTraversable="false" layoutX="286.0" layoutY="62.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Player vs Computer HARD" textAlignment="CENTER" wrapText="true">
+            <font>
+               <Font name="System Bold Italic" size="12.0" />
+            </font>
+         </Button>
         </AnchorPane>
-        <Label fx:id="label" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" graphicTextGap="1.0" layoutX="50.0" layoutY="32.0" lineSpacing="1.0" prefHeight="126.0" prefWidth="598.0" text="Welcome to Tic Tac Toe game" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" wrapText="true">
+        <Label fx:id="label" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" graphicTextGap="1.0" layoutX="50.0" layoutY="32.0" lineSpacing="1.0" prefHeight="126.0" prefWidth="598.0" text="Welcome to Tic-Tac-Toe game" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" wrapText="true">
             <font>
                 <Font name="Times New Roman Bold" size="50.0" />
             </font>
@@ -66,47 +59,47 @@
                 <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="150.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="150.0" vgrow="SOMETIMES" />
             </rowConstraints>
-            <Button fx:id="button1" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0">
+            <Button fx:id="button1" disable="true" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0">
             <font>
                <Font name="System Bold" size="70.0" />
             </font>
          </Button>
-            <Button fx:id="button2" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+            <Button fx:id="button2" disable="true" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
             <font>
                <Font name="System Bold" size="70.0" />
             </font>
          </Button>
-            <Button fx:id="button3" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
+            <Button fx:id="button3" disable="true" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
             <font>
                <Font name="System Bold" size="70.0" />
             </font>
          </Button>
-            <Button fx:id="button4" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+            <Button fx:id="button4" disable="true" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
             <font>
                <Font name="System Bold" size="70.0" />
             </font>
          </Button>
-            <Button fx:id="button5" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Button fx:id="button5" disable="true" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
             <font>
                <Font name="System Bold" size="70.0" />
             </font>
          </Button>
-            <Button fx:id="button6" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Button fx:id="button6" disable="true" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
             <font>
                <Font name="System Bold" size="70.0" />
             </font>
          </Button>
-            <Button fx:id="button7" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
+            <Button fx:id="button7" disable="true" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
             <font>
                <Font name="System Bold" size="70.0" />
             </font>
          </Button>
-            <Button fx:id="button8" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Button fx:id="button8" disable="true" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
             <font>
                <Font name="System Bold" size="70.0" />
             </font>
          </Button>
-            <Button fx:id="button9" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <Button fx:id="button9" disable="true" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
             <font>
                <Font name="System Bold" size="70.0" />
             </font>

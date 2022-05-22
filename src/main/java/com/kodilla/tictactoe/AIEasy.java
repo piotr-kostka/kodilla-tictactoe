@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
 
-public class AI {
+public class AIEasy {
     Random random = new Random();
 
     public int getEasyMove(ButtonState buttonState) {
@@ -25,7 +25,7 @@ public class AI {
         return possibleMoves.get(drawNumber).getPosition();
     }
 
-    private ArrayList<ButtonState> getEmptyStates(ButtonState buttonState){
+    ArrayList<ButtonState> getEmptyStates(ButtonState buttonState){
         ArrayList<ButtonState> possibleMoves = new ArrayList<>();
         String player = "";
 
