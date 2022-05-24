@@ -86,7 +86,7 @@ public class Controller {
     private void makeMove(Button button) {
         button.setOnMouseClicked(mouseEvent -> {
             if (PVP) {
-                setPlayerMove(button);
+                setPlayerMoveAgainstPlayer(button);
             } else if (computerEasy || computerHard) {
                 setPlayerMoveAgainstComputer(button);
                 if (movesCounter < 9 && !checkWin) {
@@ -96,7 +96,7 @@ public class Controller {
         });
     }
 
-    private void setPlayerMove(Button button) {
+    private void setPlayerMoveAgainstPlayer(Button button) {
         if(playerTurn % 2 == 0){
             button.setText("X");
             label.setText("'O' move");
@@ -125,9 +125,9 @@ public class Controller {
     private void getComputerMove(){
         int move = 0;
         if(computerEasy) {
-            move = aiEasy.getEasyMove(getBoardState());
+            move = aiEasy.getComputerEasyMove(getBoardState());
         } else if (computerHard) {
-            move = getHardMove();
+            move = getComputerHardMove();
         }
         gridButtons.get(move).setText("O");
         gridButtons.get(move).setDisable(true);
@@ -207,7 +207,7 @@ public class Controller {
                     player2Score++;
                 }
                 score.setText("Player X " + playerScore + " - " + player2Score + " Player O");
-            } else if (computerEasy || computerHard) {
+            } else {
                 if (lines.equals("XXX")) {
                     label.setText("You won!");
                     label.setStyle("-fx-text-fill: green");
@@ -303,8 +303,20 @@ public class Controller {
         computerEasy = false;
     }
 
-    private int getHardMove() {
-        //win rows
+    private int getComputerHardMove() {
+        int computerMove = checkComputerWiningLines();
+
+        if (computerMove == 10) {
+            computerMove = blockPlayer();
+            if (computerMove == 20) {
+                computerMove = aiEasy.getComputerEasyMove(getBoardState());
+            }
+        }
+        return computerMove;
+    }
+
+    private int checkComputerWiningLines() {
+        // rows
         if(button1.getText().equals("O") && button2.getText().equals("O") && button3.getText().equals("")) return 2;
         if(button1.getText().equals("O") && button2.getText().equals("") && button3.getText().equals("O")) return 1;
         if(button1.getText().equals("") && button2.getText().equals("O") && button3.getText().equals("O")) return 0;
@@ -315,7 +327,7 @@ public class Controller {
         if(button7.getText().equals("O") && button8.getText().equals("") && button9.getText().equals("O")) return 7;
         if(button7.getText().equals("") && button8.getText().equals("O") && button9.getText().equals("O")) return 6;
 
-        //win columns
+        // columns
         if(button1.getText().equals("O") && button4.getText().equals("O") && button7.getText().equals("")) return 6;
         if(button1.getText().equals("O") && button4.getText().equals("") && button7.getText().equals("O")) return 3;
         if(button1.getText().equals("") && button4.getText().equals("O") && button7.getText().equals("O")) return 0;
@@ -326,7 +338,7 @@ public class Controller {
         if(button3.getText().equals("O") && button6.getText().equals("") && button9.getText().equals("O")) return 5;
         if(button3.getText().equals("") && button6.getText().equals("O") && button9.getText().equals("O")) return 2;
 
-        //win diagonals
+        // diagonals
         if(button1.getText().equals("O") && button5.getText().equals("O") && button9.getText().equals("")) return 8;
         if(button1.getText().equals("O") && button5.getText().equals("") && button9.getText().equals("O")) return 4;
         if(button1.getText().equals("") && button5.getText().equals("O") && button9.getText().equals("O")) return 0;
@@ -334,7 +346,11 @@ public class Controller {
         if(button3.getText().equals("O") && button5.getText().equals("") && button7.getText().equals("O")) return 4;
         if(button3.getText().equals("") && button5.getText().equals("O") && button7.getText().equals("O")) return 2;
 
-        //block rows
+        else return 10;
+    }
+
+    private int blockPlayer() {
+        // rows
         if(button1.getText().equals("X") && button2.getText().equals("X") && button3.getText().equals("")) return 2;
         if(button1.getText().equals("X") && button2.getText().equals("") && button3.getText().equals("X")) return 1;
         if(button1.getText().equals("") && button2.getText().equals("X") && button3.getText().equals("X")) return 0;
@@ -345,7 +361,7 @@ public class Controller {
         if(button7.getText().equals("X") && button8.getText().equals("") && button9.getText().equals("X")) return 7;
         if(button7.getText().equals("") && button8.getText().equals("X") && button9.getText().equals("X")) return 6;
 
-        //block columns
+        // columns
         if(button1.getText().equals("X") && button4.getText().equals("X") && button7.getText().equals("")) return 6;
         if(button1.getText().equals("X") && button4.getText().equals("") && button7.getText().equals("X")) return 3;
         if(button1.getText().equals("") && button4.getText().equals("X") && button7.getText().equals("X")) return 0;
@@ -356,7 +372,7 @@ public class Controller {
         if(button3.getText().equals("X") && button6.getText().equals("") && button9.getText().equals("X")) return 5;
         if(button3.getText().equals("") && button6.getText().equals("X") && button9.getText().equals("X")) return 2;
 
-        //block diagonals
+        // diagonals
         if(button1.getText().equals("X") && button5.getText().equals("X") && button9.getText().equals("")) return 8;
         if(button1.getText().equals("X") && button5.getText().equals("") && button9.getText().equals("X")) return 4;
         if(button1.getText().equals("") && button5.getText().equals("X") && button9.getText().equals("X")) return 0;
@@ -364,6 +380,6 @@ public class Controller {
         if(button3.getText().equals("X") && button5.getText().equals("") && button7.getText().equals("X")) return 4;
         if(button3.getText().equals("") && button5.getText().equals("X") && button7.getText().equals("X")) return 2;
 
-        else return aiEasy.getEasyMove(getBoardState());
+        else return 20;
     }
 }

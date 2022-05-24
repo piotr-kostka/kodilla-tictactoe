@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 public class ButtonState {
 
-    private int position;
-    private String[] buttonState;
+    private final int position;
+    private final String[] buttonState;
 
     public ButtonState(int position, String[] buttonState) {
         this.position = position;
