@@ -7,7 +7,7 @@ import java.util.Random;
 public class AIEasy {
     Random random = new Random();
 
-    public int getEasyMove(ButtonState buttonState) {
+    public int getComputerEasyMove(ButtonState buttonState) {
         int drawNumber;
         ArrayList<ButtonState> possibleMoves = getEmptyStates(buttonState);
         ArrayList<Integer> movesList = new ArrayList<>();
