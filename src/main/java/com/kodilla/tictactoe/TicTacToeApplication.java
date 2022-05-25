@@ -26,6 +26,5 @@ public class TicTacToeApplication extends Application {
         primaryStage.setScene(scene);
         primaryStage.sizeToScene();
         primaryStage.show();
-
     }
 }

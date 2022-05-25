@@ -80,7 +80,7 @@ public class Controller {
     }
 
     private void displayBoard() {
-            gridButtons.forEach(this::makeMove);
+        gridButtons.forEach(this::makeMove);
     }
 
     private void makeMove(Button button) {
@@ -195,7 +195,7 @@ public class Controller {
     }
 
     private void checkWin() {
-        for(String lines : getWiningLine()) {
+        for (String lines : getWiningLine()) {
             if (PVP) {
                 if (lines.equals("XXX")) {
                     label.setText("X won!");
@@ -206,7 +206,7 @@ public class Controller {
                     checkWin = true;
                     player2Score++;
                 }
-                score.setText("Player X " + playerScore + " - " + player2Score + " Player O");
+                score.setText("Player 'X' " + playerScore + " - " + player2Score + " Player 'O'");
             } else {
                 if (lines.equals("XXX")) {
                     label.setText("You won!");
@@ -317,68 +317,68 @@ public class Controller {
 
     private int checkComputerWiningLines() {
         // rows
-        if(button1.getText().equals("O") && button2.getText().equals("O") && button3.getText().equals("")) return 2;
-        if(button1.getText().equals("O") && button2.getText().equals("") && button3.getText().equals("O")) return 1;
-        if(button1.getText().equals("") && button2.getText().equals("O") && button3.getText().equals("O")) return 0;
-        if(button4.getText().equals("O") && button5.getText().equals("O") && button6.getText().equals("")) return 5;
-        if(button4.getText().equals("O") && button5.getText().equals("") && button6.getText().equals("O")) return 4;
-        if(button4.getText().equals("") && button5.getText().equals("O") && button6.getText().equals("O")) return 3;
-        if(button7.getText().equals("O") && button8.getText().equals("O") && button9.getText().equals("")) return 8;
-        if(button7.getText().equals("O") && button8.getText().equals("") && button9.getText().equals("O")) return 7;
-        if(button7.getText().equals("") && button8.getText().equals("O") && button9.getText().equals("O")) return 6;
+        if (button1.getText().equals("O") && button2.getText().equals("O") && button3.getText().equals("")) return 2;
+        if (button1.getText().equals("O") && button2.getText().equals("") && button3.getText().equals("O")) return 1;
+        if (button1.getText().equals("") && button2.getText().equals("O") && button3.getText().equals("O")) return 0;
+        if (button4.getText().equals("O") && button5.getText().equals("O") && button6.getText().equals("")) return 5;
+        if (button4.getText().equals("O") && button5.getText().equals("") && button6.getText().equals("O")) return 4;
+        if (button4.getText().equals("") && button5.getText().equals("O") && button6.getText().equals("O")) return 3;
+        if (button7.getText().equals("O") && button8.getText().equals("O") && button9.getText().equals("")) return 8;
+        if (button7.getText().equals("O") && button8.getText().equals("") && button9.getText().equals("O")) return 7;
+        if (button7.getText().equals("") && button8.getText().equals("O") && button9.getText().equals("O")) return 6;
 
         // columns
-        if(button1.getText().equals("O") && button4.getText().equals("O") && button7.getText().equals("")) return 6;
-        if(button1.getText().equals("O") && button4.getText().equals("") && button7.getText().equals("O")) return 3;
-        if(button1.getText().equals("") && button4.getText().equals("O") && button7.getText().equals("O")) return 0;
-        if(button2.getText().equals("O") && button5.getText().equals("O") && button8.getText().equals("")) return 7;
-        if(button2.getText().equals("O") && button5.getText().equals("") && button8.getText().equals("O")) return 4;
-        if(button2.getText().equals("") && button5.getText().equals("O") && button8.getText().equals("O")) return 1;
-        if(button3.getText().equals("O") && button6.getText().equals("O") && button9.getText().equals("")) return 8;
-        if(button3.getText().equals("O") && button6.getText().equals("") && button9.getText().equals("O")) return 5;
-        if(button3.getText().equals("") && button6.getText().equals("O") && button9.getText().equals("O")) return 2;
+        if (button1.getText().equals("O") && button4.getText().equals("O") && button7.getText().equals("")) return 6;
+        if (button1.getText().equals("O") && button4.getText().equals("") && button7.getText().equals("O")) return 3;
+        if (button1.getText().equals("") && button4.getText().equals("O") && button7.getText().equals("O")) return 0;
+        if (button2.getText().equals("O") && button5.getText().equals("O") && button8.getText().equals("")) return 7;
+        if (button2.getText().equals("O") && button5.getText().equals("") && button8.getText().equals("O")) return 4;
+        if (button2.getText().equals("") && button5.getText().equals("O") && button8.getText().equals("O")) return 1;
+        if (button3.getText().equals("O") && button6.getText().equals("O") && button9.getText().equals("")) return 8;
+        if (button3.getText().equals("O") && button6.getText().equals("") && button9.getText().equals("O")) return 5;
+        if (button3.getText().equals("") && button6.getText().equals("O") && button9.getText().equals("O")) return 2;
 
         // diagonals
-        if(button1.getText().equals("O") && button5.getText().equals("O") && button9.getText().equals("")) return 8;
-        if(button1.getText().equals("O") && button5.getText().equals("") && button9.getText().equals("O")) return 4;
-        if(button1.getText().equals("") && button5.getText().equals("O") && button9.getText().equals("O")) return 0;
-        if(button3.getText().equals("O") && button5.getText().equals("O") && button7.getText().equals("")) return 6;
-        if(button3.getText().equals("O") && button5.getText().equals("") && button7.getText().equals("O")) return 4;
-        if(button3.getText().equals("") && button5.getText().equals("O") && button7.getText().equals("O")) return 2;
+        if (button1.getText().equals("O") && button5.getText().equals("O") && button9.getText().equals("")) return 8;
+        if (button1.getText().equals("O") && button5.getText().equals("") && button9.getText().equals("O")) return 4;
+        if (button1.getText().equals("") && button5.getText().equals("O") && button9.getText().equals("O")) return 0;
+        if (button3.getText().equals("O") && button5.getText().equals("O") && button7.getText().equals("")) return 6;
+        if (button3.getText().equals("O") && button5.getText().equals("") && button7.getText().equals("O")) return 4;
+        if (button3.getText().equals("") && button5.getText().equals("O") && button7.getText().equals("O")) return 2;
 
         else return 10;
     }
 
     private int blockPlayer() {
         // rows
-        if(button1.getText().equals("X") && button2.getText().equals("X") && button3.getText().equals("")) return 2;
-        if(button1.getText().equals("X") && button2.getText().equals("") && button3.getText().equals("X")) return 1;
-        if(button1.getText().equals("") && button2.getText().equals("X") && button3.getText().equals("X")) return 0;
-        if(button4.getText().equals("X") && button5.getText().equals("X") && button6.getText().equals("")) return 5;
-        if(button4.getText().equals("X") && button5.getText().equals("") && button6.getText().equals("X")) return 4;
-        if(button4.getText().equals("") && button5.getText().equals("X") && button6.getText().equals("X")) return 3;
-        if(button7.getText().equals("X") && button8.getText().equals("X") && button9.getText().equals("")) return 8;
-        if(button7.getText().equals("X") && button8.getText().equals("") && button9.getText().equals("X")) return 7;
-        if(button7.getText().equals("") && button8.getText().equals("X") && button9.getText().equals("X")) return 6;
+        if (button1.getText().equals("X") && button2.getText().equals("X") && button3.getText().equals("")) return 2;
+        if (button1.getText().equals("X") && button2.getText().equals("") && button3.getText().equals("X")) return 1;
+        if (button1.getText().equals("") && button2.getText().equals("X") && button3.getText().equals("X")) return 0;
+        if (button4.getText().equals("X") && button5.getText().equals("X") && button6.getText().equals("")) return 5;
+        if (button4.getText().equals("X") && button5.getText().equals("") && button6.getText().equals("X")) return 4;
+        if (button4.getText().equals("") && button5.getText().equals("X") && button6.getText().equals("X")) return 3;
+        if (button7.getText().equals("X") && button8.getText().equals("X") && button9.getText().equals("")) return 8;
+        if (button7.getText().equals("X") && button8.getText().equals("") && button9.getText().equals("X")) return 7;
+        if (button7.getText().equals("") && button8.getText().equals("X") && button9.getText().equals("X")) return 6;
 
         // columns
-        if(button1.getText().equals("X") && button4.getText().equals("X") && button7.getText().equals("")) return 6;
-        if(button1.getText().equals("X") && button4.getText().equals("") && button7.getText().equals("X")) return 3;
-        if(button1.getText().equals("") && button4.getText().equals("X") && button7.getText().equals("X")) return 0;
-        if(button2.getText().equals("X") && button5.getText().equals("X") && button8.getText().equals("")) return 7;
-        if(button2.getText().equals("X") && button5.getText().equals("") && button8.getText().equals("X")) return 4;
-        if(button2.getText().equals("") && button5.getText().equals("X") && button8.getText().equals("X")) return 1;
-        if(button3.getText().equals("X") && button6.getText().equals("X") && button9.getText().equals("")) return 8;
-        if(button3.getText().equals("X") && button6.getText().equals("") && button9.getText().equals("X")) return 5;
-        if(button3.getText().equals("") && button6.getText().equals("X") && button9.getText().equals("X")) return 2;
+        if (button1.getText().equals("X") && button4.getText().equals("X") && button7.getText().equals("")) return 6;
+        if (button1.getText().equals("X") && button4.getText().equals("") && button7.getText().equals("X")) return 3;
+        if (button1.getText().equals("") && button4.getText().equals("X") && button7.getText().equals("X")) return 0;
+        if (button2.getText().equals("X") && button5.getText().equals("X") && button8.getText().equals("")) return 7;
+        if (button2.getText().equals("X") && button5.getText().equals("") && button8.getText().equals("X")) return 4;
+        if (button2.getText().equals("") && button5.getText().equals("X") && button8.getText().equals("X")) return 1;
+        if (button3.getText().equals("X") && button6.getText().equals("X") && button9.getText().equals("")) return 8;
+        if (button3.getText().equals("X") && button6.getText().equals("") && button9.getText().equals("X")) return 5;
+        if (button3.getText().equals("") && button6.getText().equals("X") && button9.getText().equals("X")) return 2;
 
         // diagonals
-        if(button1.getText().equals("X") && button5.getText().equals("X") && button9.getText().equals("")) return 8;
-        if(button1.getText().equals("X") && button5.getText().equals("") && button9.getText().equals("X")) return 4;
-        if(button1.getText().equals("") && button5.getText().equals("X") && button9.getText().equals("X")) return 0;
-        if(button3.getText().equals("X") && button5.getText().equals("X") && button7.getText().equals("")) return 6;
-        if(button3.getText().equals("X") && button5.getText().equals("") && button7.getText().equals("X")) return 4;
-        if(button3.getText().equals("") && button5.getText().equals("X") && button7.getText().equals("X")) return 2;
+        if (button1.getText().equals("X") && button5.getText().equals("X") && button9.getText().equals("")) return 8;
+        if (button1.getText().equals("X") && button5.getText().equals("") && button9.getText().equals("X")) return 4;
+        if (button1.getText().equals("") && button5.getText().equals("X") && button9.getText().equals("X")) return 0;
+        if (button3.getText().equals("X") && button5.getText().equals("X") && button7.getText().equals("")) return 6;
+        if (button3.getText().equals("X") && button5.getText().equals("") && button7.getText().equals("X")) return 4;
+        if (button3.getText().equals("") && button5.getText().equals("X") && button7.getText().equals("X")) return 2;
 
         else return 20;
     }

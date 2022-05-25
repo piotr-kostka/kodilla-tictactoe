@@ -15,24 +15,19 @@ public class AIEasy {
         for (ButtonState states: possibleMoves) {
             movesList.add(states.getPosition());
         }
-
-        if (movesList.size()>1) {
-            drawNumber = random.nextInt(movesList.size());
-        } else {
-            return 0;
-        }
+        drawNumber = random.nextInt(movesList.size());
 
         return possibleMoves.get(drawNumber).getPosition();
     }
 
-    ArrayList<ButtonState> getEmptyStates(ButtonState buttonState){
+    ArrayList<ButtonState> getEmptyStates(ButtonState buttonState) {
         ArrayList<ButtonState> possibleMoves = new ArrayList<>();
         String player = "";
 
         for (int i = 0; i < 9; i++) {
             String[] newState = buttonState.getButtonState();
 
-            if(!Objects.equals(newState[i], "X") && !Objects.equals(newState[i], "O")){
+            if (!Objects.equals(newState[i], "X") && !Objects.equals(newState[i], "O")){
                 newState[i] = player;
                 possibleMoves.add(new ButtonState(i, newState));
             }
