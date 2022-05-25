@@ -32,7 +32,7 @@
                     <Font name="Dubai Bold" size="21.0" />
                 </font>
             </Label>
-            <Button fx:id="playAgain" layoutX="462.0" layoutY="62.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playAgain" prefHeight="100.0" prefWidth="100.0" text="Play again">
+            <Button fx:id="playAgain" contentDisplay="CENTER" focusTraversable="false" layoutX="462.0" layoutY="62.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playAgain" prefHeight="100.0" prefWidth="100.0" text="Play again" textAlignment="CENTER">
                 <font>
                     <Font name="System Bold" size="12.0" />
                 </font>
