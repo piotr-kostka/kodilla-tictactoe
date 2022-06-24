@@ -1,7 +1,5 @@
 package com.kodilla.tictactoe;
 
-import java.util.Arrays;
-
 public class ButtonState {
 
     private final int position;
@@ -18,13 +16,5 @@ public class ButtonState {
 
     public String[] getButtonState() {
         return buttonState;
-    }
-
-    @Override
-    public String toString() {
-        return "State{" +
-                "position=" + position +
-                ", state=" + Arrays.toString(buttonState) +
-                '}';
     }
 }
